@@ -27,4 +27,15 @@ router.get('/:id', async (req, res) => {
 })
 
 
+//create (add) a new student
+router.post('/', async (req, res) => {
+    try {
+        const student = await StudentInfo.create(req.body);
+        res.status(200).json(student);
+    } catch (error) {
+        // @ts-ignore
+        res.status(500).json({message: error.message});
+    }
+});
+
 export default router;
