@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-//update
+//update student info
 router.put('/:id', async (req, res) => {
     try {
         const {id} = req.params;
@@ -50,6 +50,24 @@ router.put('/:id', async (req, res) => {
 
         const updatedStudent = await StudentInfo.findById(id);
         res.status(200).json(updatedStudent);
+    } catch (error) {
+        // @ts-ignore
+        res.status(500).json({message: error.message});
+    }
+});
+
+//delete students
+router.delete('/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const student = await StudentInfo.findByIdAndDelete(id, req.body);
+
+        if (!student) {
+            return res.status(404).json({message: "Student not found"});
+        }
+
+        res.status(200).json({message: "Delete success"});
+
     } catch (error) {
         // @ts-ignore
         res.status(500).json({message: error.message});
