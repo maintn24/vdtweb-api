@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://maintn124:adminPassword@vdt2024db.6hhluvk.mongod
     .then(() => {
         console.log('Connected!');
         app.listen(2000, () => {
-            console.log("server running on localhost:2000");
+            console.log("server running on http://localhost:2000");
         });
     })
     .catch(() => console.log('Connection failed'));
