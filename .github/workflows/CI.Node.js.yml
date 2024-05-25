@@ -1,12 +1,12 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests in 18.x node version
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests in different node version
 
 name: VDTWebAPI Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: ['**']
+  pull_request:
+    branches: ["master"]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x, 18.x, 20.x, 22.x]
 
     steps:
     - uses: actions/checkout@v4
