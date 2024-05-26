@@ -13,13 +13,13 @@ jobs:
 
     services:
       mongodb:
-        image: mongo: latest
+        image: mongo:6.0
         ports:
           - 27017:27017
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [20. x]
 
     steps:
     - name: Checkout code
