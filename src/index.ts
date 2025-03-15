@@ -3,8 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose"
 import StudentInfo from './models/student-info.model';
 import studentRoute from "./routes/student.route";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -12,11 +16,11 @@ app.use(cors());
 
 app.use("/api/students", studentRoute);
 
-mongoose.connect("mongodb+srv://maintn124:adminPassword@vdt2024db.6hhluvk.mongodb.net/VDT2024API?retryWrites=true&w=majority&appName=VDT2024DB")
+mongoose.connect(process.env.MONGODB_URI!)
     .then(() => {
-        console.log('Connected!');
-        app.listen(2000, () => {
-            console.log("server running on http://localhost:2000");
+        console.log('Connected to MongoDB!');
+        app.listen(PORT, () => {
+            console.log(`Server running on http://localhost:${PORT}`);
         });
     })
-    .catch(() => console.log('Connection failed'));
+    .catch((error) => console.log('Connection failed:', error));
